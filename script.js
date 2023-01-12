@@ -8,6 +8,7 @@ var pwSpecial;
 var pwUpper;
 var pwLower;
 var pwNumeric;
+var pwChar;
 
 var pwLengthBool;
 var pwSpecialBool;
@@ -16,13 +17,14 @@ var pwLowerBool;
 var pwNumericBool;
 
 // Defining arrays to hold possible password characters
-const specialArray = [' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+',
-                      ',', '-', '.', '/', ':', ';', '<', '>', '=', '?', '@', '[', ']', '^', '_', '`', '{', '}', '~'];
+const specialArray = [' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+'
+                      , '-', '.', '/', ':', ';', '<', '>', '=', '?', '@', '[', ']', '^', '_', '`', '{', '}', '~'];
 const alphabetLower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
                       'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const alphabetUpper = alphabetLower.toString().toUpperCase().split(",");
 const numbersArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 var pwCharPool = [];
+var tempPass =[];
 
 // Begin sequence of prompts
 generateBtn.addEventListener("click", startPrompt);
@@ -98,6 +100,8 @@ function startPrompt() {
       alert('Invalid entry, please try again.');
     }
   }
+
+  // Reset the parameters if no character types are selected
   if (pwSpecialBool === false && pwUpperBool === false && pwLowerBool === false && pwNumericBool === false){
     alert("Hm, it appears you don't want any characters in your password, try again.");
     pwSpecialBool = undefined;
@@ -105,14 +109,21 @@ function startPrompt() {
     pwLowerBool = undefined;
     pwNumericBool = undefined;
     return;
+    }
   }
-  }
+
+  // Function to generate random characters
   function generatePassword() {
     for(let i = 0; i < pwLength; i++) {
     const randomChar = Math.floor(Math.random()*pwCharPool.length);
-    const pwChar = pwCharPool[randomChar];
-    return pwChar;
+    pwChar = pwCharPool[randomChar];
+    // Push random characters into a new array
+    tempPass.push(pwChar);
     }
+
+    // Convert the array to a string and remove the commas
+    var finalPass = tempPass.toString();
+    return finalPass.split(',').join('');
 }
 
 // Write password to the #password input
