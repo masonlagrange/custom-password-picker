@@ -12,6 +12,10 @@ N/A
 
 Click the "Generate Password" button to open a series of prompts that will allow the user to customize their password. This is done by selecting the desired length of the password, and whether or not the following characters should be included: special characters, uppercase letters, lowercase letters, and numbers. After entering all the parameters, a password matching your input will be generated.
 
+## Screenshot
+
+![image](https://user-images.githubusercontent.com/119389197/211992226-73d08a77-222d-487c-90ff-546df821899d.png)
+
 ## Link
 
 https://masonlagrange.github.io/custom-password-picker/ 
